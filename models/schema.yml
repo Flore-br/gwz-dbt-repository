@@ -50,3 +50,136 @@ sources:
             description : les frais de logistique
           - name : ship_cost
             description : le ship cost
+
+      - name: adwords
+        identifier: raw_gz_adwords
+        description : données de adwords
+        tests :
+          - unique:
+              column_name: "(date_date ||'-'|| campaign_key)"
+        columns : 
+          - name : date_date
+            description : la date
+          - name : paid_source
+            description : la source de paiement
+          - name : campaign_key
+            description : la clé de campagne
+          - name : campgn_name
+            description : le nom de la campagne
+          - name : ads_cost
+            description : les coûts ads
+          - name : impression
+            description : lenombre d'impression
+          - name : click
+            description : le nombre de clicks
+      - name: bing
+        identifier: raw_gz_bing
+        description : données de bing
+        tests :
+          - unique:
+              column_name: "(date_date ||'-'|| campaign_key)"
+        columns : 
+          - name : date_date
+            description : la date
+          - name : paid_source
+            description : la source de paiement
+          - name : campaign_key
+            description : la clé de campagne
+          - name : campgn_name
+            description : le nom de la campagne
+          - name : ads_cost
+            description : les coûts ads
+          - name : impression
+            description : lenombre d'impression
+          - name : click
+            description : le nombre de clicks
+      - name: criteo
+        identifier: raw_gz_criteo
+        description : données de criteo
+        tests :
+          - unique:
+              column_name: "(date_date ||'-'|| campaign_key)"
+        columns : 
+          - name : date_date
+            description : la date
+          - name : paid_source
+            description : la source de paiement
+          - name : campaign_key
+            description : la clé de campagne
+          - name : campgn_name
+            description : le nom de la campagne
+          - name : ads_cost
+            description : les coûts ads
+          - name : impression
+            description : lenombre d'impression
+          - name : click
+            description : le nombre de clicks
+      - name: facebook
+        identifier: raw_gz_facebook
+        description : données de facebook
+        tests :
+          - unique:
+              column_name: "(date_date ||'-'|| campaign_key)"
+        columns : 
+          - name : date_date
+            description : la date
+          - name : paid_source
+            description : la source de paiement
+          - name : campaign_key
+            description : la clé de campagne
+          - name : campgn_name
+            description : le nom de la campagne
+          - name : ads_cost
+            description : les coûts ads
+          - name : impression
+            description : lenombre d'impression
+          - name : click
+            description : le nombre de clicks
+
+models:
+  - name: int_campaigns_day
+    description: données de campagnes par jour
+    columns: 
+      - name: date_date
+        description : date 
+        tests: 
+          - not_null
+      - name: ads_cost
+        description : ads cost par jour
+      - name: ads_impression
+        description : ads impression par jour
+      - name: ads_clicks
+        description : ads clicks par jour
+  - name: finance_campaigns_day
+    description: données de campagnes et finances par jour
+    columns: 
+      - name: date_date
+        description : date
+        tests: 
+          - not_null
+      - name: ads_margin
+        description : marge sur la publicité
+      - name: average_basket
+        description : panier moyen
+      - name: operational_margin
+        description : marge opérationnelle
+      - name: ads_cost
+        description : coût de publicité
+      - name: ads_impression
+        description : nombre d'impression
+      - name: ads_click
+        description : nombre de clicks
+      - name: quantity
+        description : quantité
+      - name: revenue
+        description : chiffre d'affaire
+      - name: purchase_cost
+        description : coût de l'achat
+      - name: margin
+        description : marge
+      - name: shipping_fee
+        description : frais d'envoi
+      - name: logcost
+        description : coût de logistique
+      - name: ship_cost
+        description : coût de transport
