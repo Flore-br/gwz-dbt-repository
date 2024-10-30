@@ -1,0 +1,52 @@
+version: 2
+sources:
+  - name: raw
+    schema: gz_raw_data
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description : sales of greenweez
+        tests :
+          - unique:
+              column_name: "(orders_id ||'-'|| pdt_id)"
+        loaded_at_field: "CAST (date_date as timestamp)"
+        freshness:
+          warn_after: {count: 90, period: day}
+        columns : 
+          - name : date_date
+            description : date of purchase
+          - name : orders_id
+            description : id de l'order                  
+          - name : pdt_id
+            description : id du produit
+          - name : revenue
+            description : le revenue
+          - name : quantity
+            description : c'est la quantite
+
+      - name: product
+        identifier: raw_gz_product
+        description : products od greenweez
+        columns : 
+          - name : products_id
+            description : les produits
+            tests : 
+              - unique
+              - not_null
+          - name : purchase_price
+            description : le prix d'achat
+      - name: ship
+        identifier: raw_gz_ship
+        description : le transfert de marchandises
+        columns : 
+          - name : orders_id
+            description : l'id des orders
+            tests : 
+              - unique
+              - not_null
+          - name : shipping_fee 
+            description : les frais d'envoi
+          - name : logCost
+            description : les frais de logistique
+          - name : ship_cost
+            description : le ship cost
